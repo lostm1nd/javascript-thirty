@@ -8,18 +8,27 @@
   const minHand = document.querySelector('.min-hand');
   const secHand = document.querySelector('.second-hand');
 
-  const updateClock = function () {
+  const getDate = () => {
     const date = new Date();
-    const hours = date.getHours() % 12;
-    const minutes = date.getMinutes();
-    const seconds = date.getSeconds();
+
+    return {
+      hours: date.getHours() % 12,
+      minutes: date.getMinutes(),
+      seconds: date.getSeconds()
+    };
+  };
+
+  const calculateRotation = (time, angle) => `rotate(${baseAngle + time * angle}deg)`;
+
+  const updateClock = function () {
+    const date = getDate();
 
     // remove flickering when going from 450deg to 90deg
-    secHand.style.transition = seconds === 0 ? 'none' : null;
+    secHand.style.transition = date.seconds === 0 ? 'none' : null;
 
-    hourHand.style.transform = `rotate(${baseAngle + hours * angleBy12}deg)`;
-    minHand.style.transform = `rotate(${baseAngle + minutes * angleBy60}deg)`;
-    secHand.style.transform = `rotate(${baseAngle + seconds * angleBy60}deg)`;
+    hourHand.style.transform = calculateRotation(date.hours, angleBy12);
+    minHand.style.transform = calculateRotation(date.minutes, angleBy60);
+    secHand.style.transform = calculateRotation(date.seconds, angleBy60);
 
     window.requestAnimationFrame(updateClock);
   };
