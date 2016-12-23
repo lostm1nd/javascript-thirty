@@ -1,0 +1,103 @@
+:root {
+  --font-size: 20px;
+  --full-height: 100vh;
+  --panel-transition: 0.7s;
+  --easing: cubic-bezier(0.6, -0.2, 0.7, -0.1)
+}
+
+html {
+  box-sizing: border-box;
+  background: #ffc600;
+  font-family: 'helvetica neue';
+  font-size: var(--font-size);
+  font-weight: 200;
+}
+
+body {
+  margin: 0;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.panels {
+  min-height: var(--full-height);
+  overflow: hidden;
+  display: flex;
+}
+
+.panel {
+  background: #6B0F9C;
+  box-shadow: inset 0 0 0 5px rgba(255,255,255,0.1);
+  color: white;
+  text-align: center;
+  font-size: var(--font-size);
+  background-size: cover;
+  background-position: center;
+  display: flex;
+  flex-grow: 1;
+  flex-direction: column;
+  justify-content: center;
+  transition: font-size var(--panel-transition) var(--easing), flex var(--panel-transition) var(--easing);
+}
+
+.panel p {
+  margin: 0;
+  width: 100%;
+  transition: transform 0.5s;
+  transition-delay: var(--panel-transition);
+  text-transform: uppercase;
+  font-family: 'Amatic SC', cursive;
+  text-shadow: 0 0 4px rgba(0, 0, 0, 0.72), 0 0 14px rgba(0, 0, 0, 0.45);
+  font-size: 2em;
+}
+
+.panel p:first-child {
+  will-change: transform;
+  transform: translateY(calc(var(--full-height) / -2));
+}
+
+.panel p:nth-child(2) {
+  font-size: 4em;
+}
+
+.panel p:last-child {
+  will-change: transform;
+  transform: translateY(calc(var(--full-height) / 2));
+}
+
+.panel.open {
+  flex-grow: 5;
+  font-size: calc(var(--font-size) * 2);
+}
+
+.panel.open p:first-child,
+.panel.open p:last-child {
+  transform: translateY(0);
+}
+
+.panel1 {
+  background-image:url(https://source.unsplash.com/gYl-UtwNg_I/1500x1500);
+}
+
+.panel2 {
+  background-image:url(https://source.unsplash.com/1CD3fd8kHnE/1500x1500);
+}
+
+.panel3 {
+  background-image:url(https://images.unsplash.com/photo-1465188162913-8fb5709d6d57?dpr=1&auto=compress,format&fit=crop&w=1500&h=1500&q=80&cs=tinysrgb&crop=);
+}
+
+.panel4 {
+  background-image:url(https://source.unsplash.com/ITjiVXcwVng/1500x1500);
+}
+
+.panel5 {
+  background-image:url(https://source.unsplash.com/3MNzGlQM7qs/1500x1500);
+}
+
+.cta {
+  color: white;
+  text-decoration: none;
+}
